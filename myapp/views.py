@@ -1,21 +1,15 @@
 from django.http import HttpResponse, HttpResponseBadRequest, HttpResponseForbidden
 from django.views.decorators.csrf import csrf_exempt
-
-from linebot import LineBotApi, WebhookHandler
+from linebot import LineBotApi, WebhookParser, WebhookHandler
 from linebot.exceptions import InvalidSignatureError, LineBotApiError
 from linebot.models import MessageEvent, TextMessage
-
 from linebot.models import TextSendMessage
 import openai, os
 
-
+#parser = WebhookParser(settings.LINE_CHANNEL_SECRET)
 line_bot_api = LineBotApi(os.getenv("LINE_CHANNEL_ACCESS_TOKEN"))
 line_handler = WebhookHandler(os.getenv("LINE_CHANNEL_SECRET"))
-
-	
 openai.api_key = os.getenv("OPENAI_API_KEY")
-
-
 
 	
 chat_language = os.getenv("INIT_LANGUAGE", default = "zh")
@@ -74,7 +68,7 @@ def callback(request):
         signature = request.META['HTTP_X_LINE_SIGNATURE']
         body = request.body.decode('utf-8')
         try:
-            events = parser.parse(body, signature)
+            events = line_handler.parse(body, signature)
         except InvalidSignatureError:
             return HttpResponseForbidden()
         except LineBotApiError:
