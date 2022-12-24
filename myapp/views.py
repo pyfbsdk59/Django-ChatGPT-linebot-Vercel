@@ -81,12 +81,7 @@ def callback(request):
                     user_message = event.message.text        
                     chatgpt.add_msg(f"HUMAN:{user_message}?\n")
                                 
-                    print(user_message)
-
                     reply_msg = chatgpt.get_response().replace("AI:", "", 1)
-
-                                        
-                    print(reply_msg) 
 
                     line_bot_api.reply_message(
                         event.reply_token,
