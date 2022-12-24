@@ -1,16 +1,14 @@
-# -*- coding: utf-8 -*-
-
 {
   "builds": [
     {
-      "src": "myapp/wsgi.py",
+      "src": "config/wsgi.py",
       "use": "@vercel/python"
     }
   ],
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "myapp/wsgi.py"
+      "dest": "config/wsgi.py"
     }
   ]
 }
