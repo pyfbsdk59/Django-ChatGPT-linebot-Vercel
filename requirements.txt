@@ -1,5 +1,5 @@
-line-bot-sdk==1.8.0
-Django==2.2
+line-bot-sdk
+Django
 openai
 
 
