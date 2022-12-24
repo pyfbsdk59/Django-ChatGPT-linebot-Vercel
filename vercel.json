@@ -1,10 +1,10 @@
 {
   "builds": [{
       "src": "config/wsgi.py",
-      "use": "@vercel/python",
+      "use": "@ardnt/vercel-python-wsgi",
       "config": {
-          "maxLambdaSize":"50mb",
-          "runtime": "python3.8",
+          "maxLambdaSize":"15mb",
+          "runtime": "python3.9",
           "wsgiApplicationName": "application"
       }
     }],
