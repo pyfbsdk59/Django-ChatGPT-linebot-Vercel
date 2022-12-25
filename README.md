@@ -10,7 +10,7 @@
 
 
 
-#### 1. 本專案參考了以下前輩和官方的方案改成製作，只針對剛學習Python或Django的朋友來佈置linebot在Vercel上
+### 1. 本專案參考了以下前輩和官方的方案改成製作，只針對剛學習Python或Django的朋友來佈置linebot在Vercel上。Vercel可取代取消免費方案的Heroku，來測試Side Project。
 
 https://github.com/howarder3/GPT-Linebot-python-flask-on-vercel<br><br>
 https://github.com/vercel/examples/tree/main/python/django
