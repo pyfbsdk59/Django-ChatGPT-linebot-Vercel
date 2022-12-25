@@ -6,10 +6,13 @@ from linebot.models import MessageEvent, TextMessage
 from linebot.models import TextSendMessage
 import openai, os
 
-#parser = WebhookParser(settings.LINE_CHANNEL_SECRET)
-line_bot_api = LineBotApi(os.getenv("LINE_CHANNEL_ACCESS_TOKEN"))
-line_handler = WebhookHandler(os.getenv("LINE_CHANNEL_SECRET"))
+#line_handler = WebhookHandler(os.getenv("LINE_CHANNEL_SECRET"))
+#parser = WebhookParser(os.getenv("LINE_CHANNEL_SECRET"))
+#line_bot_api = LineBotApi(os.getenv("LINE_CHANNEL_ACCESS_TOKEN"))
+#line_handler = WebhookHandler(os.getenv("LINE_CHANNEL_SECRET"))
 openai.api_key = os.getenv("OPENAI_API_KEY")
+line_bot_api = LineBotApi(os.getenv("LINE_CHANNEL_ACCESS_TOKEN"))
+parser = WebhookParser(os.getenv("LINE_CHANNEL_SECRET"))
 
 	
 chat_language = os.getenv("INIT_LANGUAGE", default = "zh")
@@ -68,7 +71,7 @@ def callback(request):
         signature = request.META['HTTP_X_LINE_SIGNATURE']
         body = request.body.decode('utf-8')
         try:
-            events = line_handler.parse(body, signature)
+            events = parser.parse(body, signature)
         except InvalidSignatureError:
             return HttpResponseForbidden()
         except LineBotApiError:
